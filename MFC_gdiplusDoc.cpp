@@ -23,6 +23,7 @@
 IMPLEMENT_DYNCREATE(CMFCgdiplusDoc, CDocument)
 
 BEGIN_MESSAGE_MAP(CMFCgdiplusDoc, CDocument)
+	ON_COMMAND(IDM_IMAGE_LOAD, &CMFCgdiplusDoc::OnImageLoad)
 END_MESSAGE_MAP()
 
 
@@ -136,3 +137,16 @@ void CMFCgdiplusDoc::Dump(CDumpContext& dc) const
 
 
 // CMFCgdiplusDoc 명령
+
+
+void CMFCgdiplusDoc::OnImageLoad()
+{
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
+	TCHAR szFilter[] = _T("Image(*.png, *.gif, *.jpg)|*.png;*.gif;*.jpg|All Files(*.*)|*.*||");
+	CFileDialog dlg(TRUE, NULL, NULL, OFN_HIDEREADONLY, szFilter);
+	if (IDOK == dlg.DoModal()) {
+		m_ImgPath = dlg.GetPathName();
+		AfxMessageBox(m_ImgPath);
+	}
+
+}
