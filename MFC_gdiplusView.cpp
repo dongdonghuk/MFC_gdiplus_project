@@ -51,7 +51,7 @@ BOOL CMFCgdiplusView::PreCreateWindow(CREATESTRUCT& cs)
 
 // CMFCgdiplusView 그리기
 
-void CMFCgdiplusView::OnDraw(CDC* /*pDC*/)
+void CMFCgdiplusView::OnDraw(CDC* pDC)
 {
 	CMFCgdiplusDoc* pDoc = GetDocument();
 	ASSERT_VALID(pDoc);
@@ -59,6 +59,13 @@ void CMFCgdiplusView::OnDraw(CDC* /*pDC*/)
 		return;
 
 	// TODO: 여기에 원시 데이터에 대한 그리기 코드를 추가합니다.
+	Graphics g(pDC->m_hDC);
+
+	pDoc->m_img = Image::FromFile(pDoc->m_ImgPath);
+	g.DrawImage(pDoc->m_img, 100,100, pDoc->m_img->GetWidth()/5, pDoc->m_img->GetHeight() / 5);
+
+
+
 }
 
 

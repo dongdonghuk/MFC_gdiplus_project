@@ -18,7 +18,7 @@ public:
 // 작업입니다.
 public:
 	CString m_ImgPath;
-
+	Image* m_img;
 
 // 재정의입니다.
 public:
