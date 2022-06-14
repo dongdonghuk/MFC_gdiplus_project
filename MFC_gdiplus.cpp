@@ -55,6 +55,7 @@ CMFCgdiplusApp::CMFCgdiplusApp() noexcept
 
 CMFCgdiplusApp theApp;
 
+ULONG_PTR gdiplusToken;
 
 
 
@@ -63,6 +64,13 @@ CMFCgdiplusApp theApp;
 BOOL CMFCgdiplusApp::InitInstance()
 {
 
+
+	GdiplusStartupInput  gdiplusStartupInput;
+	if (GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, NULL) != Ok)
+	{
+		AfxMessageBox(_T("GDI+ 라이브러리의 초기화에 실패하였습니다!"));
+		return FALSE;
+	}
 
 
 	// 애플리케이션 매니페스트가 ComCtl32.dll 버전 6 이상을 사용하여 비주얼 스타일을
@@ -137,6 +145,9 @@ int CMFCgdiplusApp::ExitInstance()
 {
 	//TODO: 추가한 추가 리소스를 처리합니다.
 	AfxOleTerm(FALSE);
+
+	GdiplusShutdown(gdiplusToken);
+
 
 	return CWinApp::ExitInstance();
 }
