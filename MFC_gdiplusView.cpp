@@ -63,15 +63,19 @@ void CMFCgdiplusView::OnDraw(CDC* pDC)
 	// TODO: 여기에 원시 데이터에 대한 그리기 코드를 추가합니다.
 	Graphics g(pDC->m_hDC);
 
-	if (pDoc->m_img) {
-		g.DrawImage(pDoc->m_img, 300, 300, pDoc->m_img->GetWidth() / 5, pDoc->m_img->GetHeight() / 5);
+	//if (pDoc->m_img) {
+	//	g.DrawImage(pDoc->m_img, 300, 300, pDoc->m_img->GetWidth() / 5, pDoc->m_img->GetHeight() / 5);
+	//}
+
+	if (!(pDoc->m_imgMat.empty())) {
+		cvtColor(pDoc->m_imgMat, pDoc->m_imgMat, COLOR_BGR2BGRA);
+
+		Bitmap bitmap((INT)pDoc->m_imgMat.size().width, (INT)pDoc->m_imgMat.size().height, (INT)pDoc->m_imgMat.step,
+		PixelFormat32bppARGB, pDoc->m_imgMat.data);
+
+		g.DrawImage(&bitmap, 0, 0, bitmap.GetWidth(), bitmap.GetHeight());
+
 	}
-
-	//pDoc->m_imgMat = imread("C:\\Users\\r2com\\Downloads\\시루.jpg");
-
-	CString name;
-
-	//name = "시루.jpg";
 
 	//pDoc->m_imgMat = imread(std::string(CT2CA(pDoc->m_ImgPath)));
 

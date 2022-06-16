@@ -156,9 +156,9 @@ void CMFCgdiplusDoc::OnImageLoad()
 		if (m_img != nullptr) {
 			delete m_img;
 		}
+
 		m_img = Image::FromFile(m_ImgPath);
 
-		m_MatVec.push_back(m_imgMat);
 	}
 
 	UpdateAllViews(NULL);
