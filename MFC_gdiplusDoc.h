@@ -3,6 +3,7 @@
 //
 
 #pragma once
+#include <vector>
 
 
 class CMFCgdiplusDoc : public CDocument
@@ -20,6 +21,7 @@ public:
 	Image* m_img;
 
 	Mat m_imgMat;
+	vector<Mat> m_MatVec;
 
 // 재정의입니다.
 public:

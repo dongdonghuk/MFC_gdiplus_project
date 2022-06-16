@@ -64,15 +64,29 @@ void CMFCgdiplusView::OnDraw(CDC* pDC)
 	Graphics g(pDC->m_hDC);
 
 	pDoc->m_img = Image::FromFile(pDoc->m_ImgPath);
-	g.DrawImage(pDoc->m_img, 100,100, pDoc->m_img->GetWidth()/5, pDoc->m_img->GetHeight() / 5);
+	g.DrawImage(pDoc->m_img, 300,300, pDoc->m_img->GetWidth()/5, pDoc->m_img->GetHeight() / 5);
 
-	pDoc->m_imgMat = imread("C:\\Users\\r2com\\Downloads\\시루.jpg");
-	cvtColor(pDoc->m_imgMat, pDoc->m_imgMat, COLOR_BGR2BGRA);
+	//pDoc->m_imgMat = imread("C:\\Users\\r2com\\Downloads\\시루.jpg");
 
-	Bitmap bitmap((INT)pDoc->m_imgMat.size().width, (INT)pDoc->m_imgMat.size().height, (INT)pDoc->m_imgMat.step,
-		PixelFormat32bppARGB, pDoc->m_imgMat.data);
+	CString name;
 
-	g.DrawImage(&bitmap, 0, 0, bitmap.GetWidth(), bitmap.GetHeight());
+	//name = "시루.jpg";
+
+	//pDoc->m_imgMat = imread(std::string(CT2CA(pDoc->m_ImgPath)));
+
+
+	for (auto mat : pDoc->m_MatVec) {
+
+		cvtColor(mat, mat, COLOR_BGR2BGRA);
+
+		Bitmap bitmap((INT)mat.size().width, (INT)mat.size().height, (INT)mat.step,
+			PixelFormat32bppARGB, mat.data);
+
+		g.DrawImage(&bitmap, 0, 0, bitmap.GetWidth() / 5, bitmap.GetHeight() / 5);
+
+		AfxMessageBox(pDoc->m_ImgPath);
+
+	}
 
 
 

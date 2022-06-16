@@ -150,6 +150,10 @@ void CMFCgdiplusDoc::OnImageLoad()
 	if (IDOK == dlg.DoModal()) {
 		m_ImgPath = dlg.GetPathName();
 		AfxMessageBox(m_ImgPath);
+
+		m_imgMat = imread(std::string(CT2CA(m_ImgPath)));
+
+		m_MatVec.push_back(m_imgMat);
 	}
 
 }
