@@ -63,8 +63,9 @@ void CMFCgdiplusView::OnDraw(CDC* pDC)
 	// TODO: 여기에 원시 데이터에 대한 그리기 코드를 추가합니다.
 	Graphics g(pDC->m_hDC);
 
-	pDoc->m_img = Image::FromFile(pDoc->m_ImgPath);
-	g.DrawImage(pDoc->m_img, 300,300, pDoc->m_img->GetWidth()/5, pDoc->m_img->GetHeight() / 5);
+	if (pDoc->m_img) {
+		g.DrawImage(pDoc->m_img, 300, 300, pDoc->m_img->GetWidth() / 5, pDoc->m_img->GetHeight() / 5);
+	}
 
 	//pDoc->m_imgMat = imread("C:\\Users\\r2com\\Downloads\\시루.jpg");
 
@@ -75,20 +76,16 @@ void CMFCgdiplusView::OnDraw(CDC* pDC)
 	//pDoc->m_imgMat = imread(std::string(CT2CA(pDoc->m_ImgPath)));
 
 
-	for (auto mat : pDoc->m_MatVec) {
+	//for (auto mat : pDoc->m_MatVec) {
 
-		cvtColor(mat, mat, COLOR_BGR2BGRA);
+	//	cvtColor(mat, mat, COLOR_BGR2BGRA);
 
-		Bitmap bitmap((INT)mat.size().width, (INT)mat.size().height, (INT)mat.step,
-			PixelFormat32bppARGB, mat.data);
+	//	Bitmap bitmap((INT)mat.size().width, (INT)mat.size().height, (INT)mat.step,
+	//		PixelFormat32bppARGB, mat.data);
 
-		g.DrawImage(&bitmap, 0, 0, bitmap.GetWidth() / 5, bitmap.GetHeight() / 5);
+	//	g.DrawImage(&bitmap, 0, 0, bitmap.GetWidth() / 5, bitmap.GetHeight() / 5);
 
-		AfxMessageBox(pDoc->m_ImgPath);
-
-	}
-
-
+	//}
 
 }
 

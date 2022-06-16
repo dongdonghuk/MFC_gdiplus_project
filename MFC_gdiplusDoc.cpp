@@ -32,7 +32,7 @@ END_MESSAGE_MAP()
 
 // CMFCgdiplusDoc 생성/소멸
 
-CMFCgdiplusDoc::CMFCgdiplusDoc() noexcept
+CMFCgdiplusDoc::CMFCgdiplusDoc() noexcept : m_img(nullptr)
 {
 	// TODO: 여기에 일회성 생성 코드를 추가합니다.
 
@@ -153,7 +153,13 @@ void CMFCgdiplusDoc::OnImageLoad()
 
 		m_imgMat = imread(std::string(CT2CA(m_ImgPath)));
 
+		if (m_img != nullptr) {
+			delete m_img;
+		}
+		m_img = Image::FromFile(m_ImgPath);
+
 		m_MatVec.push_back(m_imgMat);
 	}
 
+	UpdateAllViews(NULL);
 }
