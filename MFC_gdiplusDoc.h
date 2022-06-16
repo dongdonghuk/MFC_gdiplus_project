@@ -2,7 +2,6 @@
 // MFC_gdiplusDoc.h: CMFCgdiplusDoc 클래스의 인터페이스
 //
 
-
 #pragma once
 
 
@@ -19,6 +18,8 @@ public:
 public:
 	CString m_ImgPath;
 	Image* m_img;
+
+	Mat m_imgMat;
 
 // 재정의입니다.
 public:

@@ -12,6 +12,11 @@
 
 #include <gdiplus.h>
 #pragma comment (lib,"Gdiplus.lib")
+
+#include "opencv2/opencv.hpp" 
+using namespace cv;
+
+
 using namespace Gdiplus;
 
 

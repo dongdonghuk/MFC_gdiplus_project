@@ -13,6 +13,8 @@
 #include "MFC_gdiplusDoc.h"
 #include "MFC_gdiplusView.h"
 
+
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -63,6 +65,14 @@ void CMFCgdiplusView::OnDraw(CDC* pDC)
 
 	pDoc->m_img = Image::FromFile(pDoc->m_ImgPath);
 	g.DrawImage(pDoc->m_img, 100,100, pDoc->m_img->GetWidth()/5, pDoc->m_img->GetHeight() / 5);
+
+	pDoc->m_imgMat = imread("C:\\Users\\r2com\\Downloads\\시루.jpg");
+	cvtColor(pDoc->m_imgMat, pDoc->m_imgMat, COLOR_BGR2BGRA);
+
+	Bitmap bitmap((INT)pDoc->m_imgMat.size().width, (INT)pDoc->m_imgMat.size().height, (INT)pDoc->m_imgMat.step,
+		PixelFormat32bppARGB, pDoc->m_imgMat.data);
+
+	g.DrawImage(&bitmap, 0, 0, bitmap.GetWidth(), bitmap.GetHeight());
 
 
 
